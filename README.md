@@ -1,9 +1,9 @@
 # Terminal Chat
 
 <img align="left" alt="exemple-chat" width="1000" heigth="800" src="https://github.com/eriklm42/chat/blob/main/chat-exemple.png" />
-<\ br>
-<\ br>
-<\ br>
+\
+\
+\
 
 
 ### How install?
