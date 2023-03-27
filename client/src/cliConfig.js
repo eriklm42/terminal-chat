@@ -20,12 +20,9 @@ export default class CliConfig {
       const command = commands[key];
       const commandPreffix = "--";
 
-      console.log({ index, command });
       if (!command.includes(commandPreffix)) continue;
       cmd.set(command.replace(commandPreffix, ""), commands[index + 1]);
     }
-
-    console.log({ cmd });
 
     return new CliConfig(Object.fromEntries(cmd));
   }

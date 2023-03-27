@@ -31,8 +31,6 @@ export default class Controller {
 
     this.socketServer.sendMessage(user.socket, constants.event.UPDATE_USERS, currentUsers)
 
-    console.log("testinho")
-
     this.broadCast({
       socketId,
       roomId,
@@ -46,9 +44,6 @@ export default class Controller {
 
     for (const [key, user] of usersOnRoom) {
       if (!includeCurrentSocket && key === socketId) continue
-
-
-      console.log("broadCast", user.socket, event, message)
       this.socketServer.sendMessage(user.socket, event, message)
     }
   }
