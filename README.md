@@ -1,6 +1,6 @@
 # Terminal Chat
 
-[<img align="left" alt="exemple-chat" width="600" heigth="400" src="https://github.com/eriklm42/chat/blob/main/chat-exemple.png" />]
+[<img align="left" alt="exemple-chat" width="1000" heigth="800" src="https://github.com/eriklm42/chat/blob/main/chat-exemple.png" />]
 
 ### How install?
 
