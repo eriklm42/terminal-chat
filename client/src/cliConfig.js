@@ -1,5 +1,8 @@
+const LOCAL_URL = "http://localhost:9898"
+const defaultRoom = "1"
+
 export default class CliConfig {
-  constructor({ username, hostUri, room }) {
+  constructor({ username, hostUri = LOCAL_URL, room = defaultRoom }) {
     this.username = username
     this.room = room
 
@@ -17,9 +20,12 @@ export default class CliConfig {
       const command = commands[key];
       const commandPreffix = "--";
 
+      console.log({ index, command });
       if (!command.includes(commandPreffix)) continue;
       cmd.set(command.replace(commandPreffix, ""), commands[index + 1]);
     }
+
+    console.log({ cmd });
 
     return new CliConfig(Object.fromEntries(cmd));
   }
