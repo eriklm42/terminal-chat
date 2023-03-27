@@ -21,12 +21,14 @@ cd client; npm install
 
 #### You can run anonymous using the command:
 
-chat:start
+```
+cd client; npm run chat:start
+```
 
 #### But if you prefer enter your nickname, you can use the command:
-
+```
 cd client; node index.js --username yourNickName
-
+```
 #### You have two parameters optional
 
 The Room, defines which room your chat will run in
