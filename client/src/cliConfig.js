@@ -1,15 +1,13 @@
-const PRODUCTION_URL = "https://hacker-chat-ew.herokuapp.com";
-
 export default class CliConfig {
-  constructor({ username, hostUri = PRODUCTION_URL, room }) {
-    this.username = username;
-    this.room = room;
+  constructor({ username, hostUri, room }) {
+    this.username = username
+    this.room = room
 
     const { hostname, port, protocol } = new URL(hostUri);
 
     this.host = hostname;
     this.port = port;
-    this.protocol = protocol;
+    this.protocol = protocol.replace(/\W/, '');
   }
 
   static parseArguments(commands) {

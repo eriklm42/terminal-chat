@@ -1,9 +1,9 @@
 {
-  "name": "blockchain",
+  "name": "server-terminal-chat",
   "version": "1.0.0",
-  "description": "exemple blockchain",
-  "main": "dist/index.js",
+  "description": "server-terminal-chat",
   "author": "Erik Lucas Maros",
+  "type": "module",
   "license": "ISC",
   "engines": {
     "node": ">=16.0.0"

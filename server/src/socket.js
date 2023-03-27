@@ -1,6 +1,6 @@
 import http from "http";
 import { randomUUID } from "crypto";
-import { constants } from "./constants";
+import { constants } from "./constants.js";
 
 export default class SockerServer {
   constructor({ port }) {

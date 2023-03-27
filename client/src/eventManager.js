@@ -1,17 +1,17 @@
-import { constants } from "./constants";
+import { constants } from "./constants.js";
 
 export default class EventManager {
     #allUsers = new Map()
 
-    constructor({ componentEmitter, scoketClient }) {
-        this.componentEmitter = componentEmitter,
-            this.scoketClient = scoketClient
+    constructor({ componentEmitter, socketClient }) {
+        this.componentEmitter = componentEmitter
+        this.socketClient = socketClient
     }
 
     joinRoomAndWaitForMessages(data) {
-        this.scoketClient.sendMessage(constants.events.socket.JOIN_ROOM, data)
+        this.socketClient.sendMessage(constants.events.socket.JOIN_ROOM, data)
         this.componentEmitter.on(constants.events.app.MESSAGE_SENT, msg => {
-            this.scoketClient.sendMessage(constants.events.socket.MESSAGE, msg)
+            this.socketClient.sendMessage(constants.events.socket.MESSAGE, msg)
         })
     }
 
@@ -19,21 +19,6 @@ export default class EventManager {
         const connectedUsers = users
         connectedUsers.forEach(({ id, userName }) => this.#allUsers.set(id, userName))
         this.#updateUsersComponent()
-    }
-
-    disconnectUser(user) {
-        const { userName, id } = user
-        this.#allUsers.delete(id)
-
-        this.#updateActivityLogComponent(`${userName} left!`)
-        this.#updateUsersComponent()
-    }
-
-    message(message) {
-        this.componentEmitter.emit(
-            constants.events.app.MESSAGE_RECEIVED,
-            message
-        )
     }
 
     newUserConnected(message) {

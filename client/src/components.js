@@ -1,7 +1,7 @@
 import blessed from "blessed"
 
 export default class ComponentsBuilder {
-    #sheen
+    #screen
     #layout
     #input
     #chat
@@ -44,7 +44,7 @@ export default class ComponentsBuilder {
         return this
     }
 
-    setInputComponent(onEnterPresed) {
+    setInputComponent(onEnterPressed) {
         const input = blessed.textarea({
             parent: this.#screen,
             bottom: 0,
@@ -60,7 +60,7 @@ export default class ComponentsBuilder {
             }
         })
 
-        input.key("enter", onEnterPresed)
+        input.key("enter", onEnterPressed)
         this.#input = input
 
         return this
@@ -72,7 +72,7 @@ export default class ComponentsBuilder {
             parent: this.#layout,
             width: "25%",
             height: "90%",
-            items: ["{bold}Messager{/}"]
+            items: ["{bold}Messenger{/}"]
         })
         return this
     }
@@ -83,12 +83,12 @@ export default class ComponentsBuilder {
             parent: this.#layout,
             width: "25%",
             height: "90%",
-            items: ["{bold}Messager{/}"]
+            items: ["{bold}Users on Room{/}"]
         })
         return this
     }
 
-    setActivityComponent() {
+    setActivityLogComponent() {
         this.#activityLog = blessed.list({
             ...this.#baseComponent(),
             parent: this.#layout,

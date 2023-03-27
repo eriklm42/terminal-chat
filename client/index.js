@@ -4,12 +4,12 @@ import EventManager from './src/eventManager.js';
 import SocketClient from './src/socker.js';
 import TerminalController from "./src/terminalController.js";
 
-const [nodePath, filePath, ...commands] = provess.argv
+const [...commands] = process.argv
 
 const config = CliConfig.parseArguments(commands)
 
 const componentEmitter = new Events()
-const socketClient = SocketClient(config)
+const socketClient = new SocketClient(config)
 await socketClient.start()
 const eventManager = new EventManager({ componentEmitter, socketClient })
 const events = eventManager.getEvents()

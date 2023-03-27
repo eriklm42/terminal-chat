@@ -17,15 +17,17 @@ export default class SocketClient {
     attachEvents(events) {
         this.#serverConnection.on("data", data => {
             try {
-                String(data)
+                data
+                    .toString()
                     .split("\n")
-                    .filter(line => line).map(JSON.parse)
+                    .filter(line => !!line)
+                    .map(JSON.parse)
                     .map(({ event, message }) => {
                         this.#serverListener.emit(event, message)
                     })
 
             } catch (error) {
-                console.error("invalid!", String(data), error)
+                console.error("invalid!", data.toString(), error)
             }
         })
 
@@ -37,7 +39,9 @@ export default class SocketClient {
             console.error(error)
         })
 
-        for (const [key, value] of events) this.#serverListener.on(key, value)
+        for (const [key, value] of events) {
+            this.#serverListener.on(key, value)
+        }
     }
 
     async createConnection() {

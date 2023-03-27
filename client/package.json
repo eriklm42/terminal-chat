@@ -1,8 +1,8 @@
 {
-  "name": "blockchain",
+  "name": "client-terminal-chat",
   "version": "1.0.0",
-  "description": "exemple blockchain",
-  "main": "dist/index.js",
+  "description": "client-terminal-chat",
+  "type": "module",
   "author": "Erik Lucas Maros",
   "license": "ISC",
   "engines": {
@@ -11,7 +11,7 @@
   "scripts": {
     "user01": "node index.js --username erik --room sala01 --hostUri http://localhost:9898",
     "user02": "node index.js --username maria --room sala01 --hostUri http://localhost:9898",
-    "user03": "node index.js --username jao --room sala02 --hostUri http://localhost:9898",
+    "user03": "node index.js --username jao --room sala01 --hostUri http://localhost:9898",
     "user04": "node index.js --username ana --room sala02 --hostUri http://localhost:9898",
     "user05": "node index.js --username bruna --room sala02",
     "user06": "node index.js --username leandro --room sala02",

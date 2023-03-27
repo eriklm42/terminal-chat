@@ -1,5 +1,5 @@
-import ComponentsBuilder from "./components"
-import { constants } from "./constants"
+import ComponentsBuilder from "./components.js"
+import { constants } from "./constants.js"
 
 export default class TerminalController {
     #usersCollors = new Map()
@@ -19,7 +19,7 @@ export default class TerminalController {
         return collor
     }
 
-    #onINputReceived(eventEmitter) {
+    #onInputReceived(eventEmitter) {
         return function () {
             const message = this.getValue()
             eventEmitter.emit(constants.events.app.MESSAGE_SENT, message)
@@ -31,7 +31,7 @@ export default class TerminalController {
         return msg => {
             const { userName, message } = msg
             const collor = this.#getUserCollor(userName)
-            chat.addItem(`{${collor}{bold}${userName}{/}: ${message}}`)
+            chat.addItem(`{${collor}}{bold}${userName}{/}: ${message}}`)
             screen.render()
         }
     }
@@ -40,14 +40,14 @@ export default class TerminalController {
         return msg => {
             const [userName] = msg.split(/\s/)
             const collor = this.#getUserCollor(userName)
-            activityLog.addItem(`{${collor}}{bold}${String(msg)}{/}`)
+            activityLog.addItem(`{${collor}}{bold}${msg.toString()}{/}`)
             screen.render()
         }
     }
 
     #onStatusChanged({ screen, status }) {
         return users => {
-            const { content } = status.item.shift()
+            const { content } = status.items.shift()
             status.clearItems()
             status.addItem(content)
             users.forEach(userName => {
@@ -59,10 +59,17 @@ export default class TerminalController {
         }
     }
 
+    #registerEvents(eventEmitter, components) {
+        eventEmitter.on(constants.events.app.STATUS_UPDATED, this.#onStatusChanged(components))
+        eventEmitter.on(constants.events.app.MESSAGE_RECEIVED, this.#onMessageReceived(components))
+        eventEmitter.on(constants.events.app.ACTIVITYLOG_UPDATED, this.#onLogChanged(components))
+    }
+
     async startTable(eventEmitter) {
         const components = new ComponentsBuilder()
             .setScreen({ titile: "Terminal Chat" })
-            .setLayoutComponent(this.#onINputReceived(eventEmitter))
+            .setLayoutComponent()
+            .setInputComponent(this.#onInputReceived(eventEmitter))
             .setChatComponent()
             .setActivityLogComponent()
             .setStatusComponent()
