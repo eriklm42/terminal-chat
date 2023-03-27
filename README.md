@@ -14,7 +14,6 @@ and
 
 ```
 cd client; npm install
-
 ```
 
 ### How can run?
