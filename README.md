@@ -1,6 +1,6 @@
 # Terminal Chat
 
--> exemplo
+https://github.com/eriklm42/chat/blob/main/chat-exemple.png
 
 ### How install?
 
