@@ -66,7 +66,7 @@ export default class Controller {
   }
 
   #joinUserOnRoom(roomId, user) {
-    const usersOnRoom = this.#rooms.get({ roomId }) ?? new Map()
+    const usersOnRoom = this.#rooms.get(roomId) ?? new Map()
     usersOnRoom.set(user.id, user)
     this.#rooms.set(roomId, usersOnRoom)
 
@@ -84,7 +84,7 @@ export default class Controller {
   #onSocketClosed(id) {
     return (_) => {
       const { userName, roomId } = this.#users.get(id)
-      console.log(userName, "disconnectUser", id)
+      console.log(userName, "disconnected", id)
       this.#logoutUser(id, roomId)
 
       this.broadCast({
